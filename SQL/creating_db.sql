@@ -3,21 +3,21 @@ USE localiza;
 
 CREATE TABLE clientes (
     id INT NOT NULL AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL,
-    endereco VARCHAR(200) NOT NULL,
-    telefone VARCHAR(20) NOT NULL,
-    email VARCHAR(100) NOT NULL,
+    `nome` VARCHAR(100) NOT NULL,
+    `senha` VARCHAR(200) NOT NULL,
+    `telefone` VARCHAR(20) NOT NULL,
+    `email` VARCHAR(100) NOT NULL,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE veiculos (
     id  INT NOT NULL AUTO_INCREMENT,
-    marca VARCHAR(100) NOT NULL,
-    modelo VARCHAR(100) NOT NULL,
-    ano VARCHAR(4) NOT NULL,
-    placa VARCHAR(7) NOT NULL,
-    cor VARCHAR(20) NOT NULL,
-    disponibilidade VARCHAR(1) NOT NULL,
+    `marca` VARCHAR(100) NOT NULL,
+    `modelo` VARCHAR(100) NOT NULL,
+    `ano` VARCHAR(4) NOT NULL,
+    `placa` VARCHAR(7) NOT NULL,
+    `cor` VARCHAR(20) NOT NULL,
+    `disponibilidade` VARCHAR(1) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -31,4 +31,13 @@ CREATE TABLE reservas (
     FOREIGN KEY (id_cliente) REFERENCES clientes(id),
     FOREIGN KEY (id_veiculo) REFERENCES veiculos(id)
 );
+
+
+
+SELECT * FROM clientes;
+
+ALTER TABLE clientes ADD UNIQUE KEY (email);
+ALTER TABLE clientes ADD UNIQUE KEY (telefone);
+
+
 
