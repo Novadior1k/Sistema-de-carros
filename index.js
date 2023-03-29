@@ -12,56 +12,61 @@ app.set('view engine', 'handlebars');
 app.use('/public', express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => {
-    res.render('home', { title: 'Express' });
+// creating database connection pool
+const pool = mysql.createPool({
+  connectionLimit: 10,
+  host: 'localhost',
+  user: 'root',
+  password: 'Xoxo7378',
+  database: 'localiza',
+  port: 3306,
 });
 
+// handle errors in database queries
+pool.on('error', (err) => {
+  console.error('Unexpected error on idle client', err);
+  process.exit(-1);
+});
 
-// end of views and webpages
+app.get('/', (req, res) => {
+  res.render('home', { title: 'Express' });
+});
 
-// creating database connection 
-app.post('/login', (req, res) => {
-    const email = req.body.email;
-    const senha = req.body.senha;
-    const telefone = req.body.telefone;
-    const name = req.body.name;
-  
-    // creating database connection
-    const connection = mysql.createConnection({
-      host: 'localhost',
-      user: 'root',
-      password: '',
-      database: 'localiza'
-    });
-  
-    // connecting to the database
-    connection.connect((error) => {
+app.post('/conn/dashes', (req, res) => {
+  const email = req.body.email;
+  const senha = req.body.senha;
+  const telefone = req.body.telefone;
+  const name = req.body.name;
+
+  pool.getConnection((err, connection) => {
+    if (err) {
+      console.error('Error connecting to database', err);
+      res.status(500).send('Internal server error');
+      return;
+    }
+    
+
+    const sql = "INSERT INTO clientes (nome, senha, telefone, email) VALUES (?, ?, ?, ?)";
+    connection.query(sql, [name, senha, telefone, email], (error, results) => {
+      connection.release(); // release the connection
       if (error) {
-        console.log("Error connecting to database!");
+        if (error.code === 'ER_DUP_ENTRY') {
+          // Handle duplicate entry error
+          console.error('Duplicate entry');
+        } else {
+          // Handle other errors
+          console.error(error);
+        }
       } else {
-        console.log("Connected to database!");
-  
-        // inserting data into the table clientes
-        const sql = "INSERT INTO clientes (email, senha, telefone, name) VALUES (?, ?, ?, ?)";
-        connection.query(sql, [email, senha, telefone, name], (error, results) => {
-          if (error) {
-            console.log("Error inserting data into clientes table!");
-          } else {
-            console.log("Data inserted successfully into clientes table!");
-          }
-        });
-  
-        // closing the database connection
-        connection.end();
+        // Insertion successful
+        console.log('New user inserted');
       }
     });
-  
-    res.send('Cadastro com sucesso');
+  });
+  res.render('logged', { title: 'Express' });
 });
-
-
-
 
 app.listen(port, () => {
-    console.log(`Website rodando no link http://localhost:${port}`);
+  console.log(`Website rodando no link http://localhost:${port}`);
 });
+
