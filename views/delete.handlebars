@@ -1,0 +1,84 @@
+<body>
+    <nav class="navbar navbar-expand-lg bg-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand text-success navabar-fixed" href="">Localiza</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="/">Cadastro de Cliente </a>
+                    <a class="nav-link" href="/">Cadastro de Veiculos</a>
+                    <a class="nav-link" href="/">Cadastro de Reservas</a>
+                    <a class="nav-link" href="/clientes">Clientes cadastrados</a>
+                    <a class="nav-link" href="/veiculos">Veiculos cadastrados</a>
+                    <a class="nav-link" href="/reservas">Reservas cadastradas</a>
+                    <a class="nav-link text-danger" href="/edit">Editar</a>
+                    <a class="nav-link text-warning" href="/delete">Delete</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center text-success">Localiza</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center" id="cadastro_cliente">Deletar Clientes</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <form action="/clientes/deletado" method="POST">
+                    <div class="mb-3" id="id">
+                        <label for="id" class="form-label">Id</label>
+                        <input type="text" class="form-control"  name="id">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center" id="cadastro_veiculos">Deletar Veiculos</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <form action="/veiculos/deletado" method="POST">
+                    <div class="mb-3" id="id1">
+                        <label for="id" class="form-label">Id</label>
+                        <input type="text" class="form-control"  name="id">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center" id="cadastro_reservas">Deletar Reservas</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <form action="/reservas/deletado" method="POST">
+                    <div class="mb-3" id="id2">
+                        <label for="id" class="form-label">Id</label>
+                        <input type="text" class="form-control"  name="id">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

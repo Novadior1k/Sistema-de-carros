@@ -7,9 +7,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link" href="#cadastro_cliente">Cadastro de Cliente </a>
-                    <a class="nav-link" href="#cadastro_veiculos">Cadastro de Veiculos</a>
-                    <a class="nav-link" href="#cadastro_reservas">Cadastro de Reservas</a>
+                    <a class="nav-link" href="/">Cadastro de Cliente </a>
+                    <a class="nav-link" href="/">Cadastro de Veiculos</a>
+                    <a class="nav-link" href="/">Cadastro de Reservas</a>
                     <a class="nav-link" href="/clientes">Clientes cadastrados</a>
                     <a class="nav-link" href="/veiculos">Veiculos cadastrados</a>
                     <a class="nav-link" href="/reservas">Reservas cadastradas</a>
@@ -28,12 +28,12 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <h2 class="text-center" id="cadastro_cliente">Cadastro de Clientes</h2>
+                <h2 class="text-center" id="cadastro_cliente">Editar Clientes</h2>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
-                <form action="/clientes" method="POST">
+                <form action="/clientes/alterado/:id" method="POST">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" name="email">
@@ -51,6 +51,10 @@
                         <label for="telefone" class="form-label">Telefone</label>
                         <input type="telephone" class="form-control"  name="telefone" maxlength="11">
                     </div>
+                    <div class="mb-3" id="id">
+                        <label for="id" class="form-label">Id</label>
+                        <input type="text" class="form-control"  name="id">
+                    </div>
                     <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
                 </form>
             </div>
@@ -65,7 +69,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <form action="/veiculos" method="POST">
+                <form action="/veiculos/alterado/:id" method="POST">
                     <div class="mb-3">
                         <label for="marca" class="form-label">Marca do Carro</label>
                         <input type="text" class="form-control" id="marca" name="marca">       
@@ -90,6 +94,10 @@
                         <label for="dispo" class="form-label">Disponibilidade S ou N</label>
                         <input type="text" class="form-control"  name="dispo">
                     </div>
+                    <div class="mb-3" id="id1">
+                        <label for="id" class="form-label">Id</label>
+                        <input type="text" class="form-control"  name="id">
+                    </div>
                     <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
                 </form>
             </div>
@@ -104,7 +112,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <form action="/reservas" method="POST">
+                <form action="/reservas/alterado/:id" method="POST">
                     <div class="mb-3">
                         <label for="id_cliente" class="form-label">Id do Cliente</label>
                         <input type="text" class="form-control" id="id_cliente" name="id_cliente">
@@ -122,11 +130,13 @@
                         <label for="data_devolucao" class="form-label">Data de devolucao</label>
                         <input type="text" class="form-control"  name="data_devolucao" >
                     </div>
+                    <div class="mb-3" id="id2">
+                        <label for="id" class="form-label">Id</label>
+                        <input type="text" class="form-control"  name="id">
+                    </div>
                     <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
                 </form>
             </div>
         </div>
     </div>
-
-
 </body>
