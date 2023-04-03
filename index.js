@@ -17,7 +17,7 @@ const pool = mysql.createPool({
   connectionLimit: 10,
   host: 'localhost',
   user: 'root',
-  password: 'Xoxo7378',
+  password: '',
   database: 'localiza',
   port: 3306,
 });
@@ -329,8 +329,8 @@ app.post('/clientes/deletado', (req, res) => {
         return;
       } 
       else if (results.affectedRows === 0) {
-        console.error('No rows were deleted');
-        res.status(404).send('Not found');
+        console.error('No rows were deleted: ' + results.affectedRows);
+        res.status(404).send('Not found' + ' ' + results.affectedRows + ' ' + error);
         return;
       }
 
@@ -340,7 +340,7 @@ app.post('/clientes/deletado', (req, res) => {
   });
 });
 // delete vehicles
-app.post('/veiculos/deletado/:id', (req, res) => {
+app.post('/veiculos/deletado', (req, res) => {
   const id = req.params.id;
 
   pool.getConnection((err, connection) => {
